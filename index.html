@@ -1,0 +1,34 @@
+<html >
+  <head>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
+    <script>
+     var app = angular.module("ghost", []);
+     app.controller("ghostCtrl", function($scope, $http, $sce) {
+       $scope.inputText = '';
+       $scope.results = '';
+       $scope.getMarkdown = function() {
+         $http.get('/markdown/'+encodeURI($scope.inputText)).
+         success(function(data, status, headers, config) {
+
+           $scope.results = $sce.trustAsHtml(data);
+          }).
+          error(function(data, status, headers, config) {
+            console.log("error:", data);
+          });
+       }
+     });
+     </script>
+<style type="text/css">
+  textarea{
+    border:1px solid black; width:300px; height:500px;float:left;margin:10px
+  }
+</style>
+  </head>
+  <body ng-app="ghost" ng-controller="ghostCtrl">
+    <h2>Fake Ghost</h2>
+
+<textarea ng-model="inputText" ng-keyup="getMarkdown()">Markdown
+</textarea>
+    <div id="output" ng-bind-html="results"></div>
+  </body>
+</html>
