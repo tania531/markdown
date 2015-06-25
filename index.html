@@ -7,7 +7,7 @@
        $scope.inputText = '';
        $scope.results = '';
        $scope.getMarkdown = function() {
-         $http.get('/markdown/'+encodeURI($scope.inputText)).
+         $http.get('/markdown/'+encodeURIComponent($scope.inputText)).
          success(function(data, status, headers, config) {
 
            $scope.results = $sce.trustAsHtml(data);

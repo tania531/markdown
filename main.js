@@ -22,7 +22,7 @@ function responseHandler(req, res) {
      res.writeHead(200, {"Content-Type": "text/html"});
      var marked = require('marked');
      var content = req.url.match(/markdown\/(.*)/)[1];
-     var md = marked(decodeURI(content));
+     var md = marked(decodeURIComponent(content));
      res.write(md);
      res.end();
 
