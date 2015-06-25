@@ -1,6 +1,5 @@
 var fs = require("fs"),
   http = require("http"),
-  request = require('request'),
   url = require('url');
 
   // console.log(marked('I am using __markdown__.'));
